@@ -91,7 +91,6 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  // background-color: #EDEEF0;
   background-color: white;
   min-height: 100vh;
   header {
@@ -282,7 +281,10 @@ a {
     margin-top: 75px;
     margin-bottom: 141px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    margin-right: 20px;
     .card {
       width: 215px;
       height: 350px;
@@ -369,6 +371,84 @@ a {
           }
         }
       }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    width: 100%;
+  }
+  
+  #promo {
+    header {
+      .logo {
+        margin-left: 20px;
+      }
+      .nav_item:last-child {
+        margin-right: 20px !important;
+      }
+    }
+    main {
+      flex-direction: column;
+      .left_section {
+        .title, .subtitle, .description {
+          text-align: center;
+          margin-left: 20px;
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+  #intensives {
+    .card_container {
+      .card {
+        margin: 30px 20px;
+      }
+    }
+  }
+  #about {
+    .footer_shinesquad {
+      .footer_shinesquad_prev {
+        text-align: center;
+      }
+      .footer_shinesquad_desc {
+        flex-direction: column;
+        .footer_shinesquad_description_name,
+        .footer_shinesquad_desc_description {
+          text-align: center;
+          .three {
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 979px) {
+  #scroll_top {
+    bottom: 50px;
+    right: 50px;
+  }
+  #promo {
+    min-height: auto;
+    main {
+      min-height: auto;
+    }
+    .right_section {
+      height: 100%;
+      img {
+        width: 300px;
+        height: 300px;
+        margin: 50px 0;
+      }
+    }
+  }
+  #footer {
+    .footer_alignment {
+      flex-direction: column;
+      justify-content: center;
     }
   }
 }
