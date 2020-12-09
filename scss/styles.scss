@@ -1,0 +1,374 @@
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+  $src: null;
+
+  $extmods: (
+    eot: "?",
+    svg: "#" + str-replace($name, " ", "_")
+  );
+
+  $formats: (
+    otf: "opentype",
+    ttf: "truetype"
+  );
+
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-weight: $weight;
+    font-style: $style;
+
+    font-display: block;
+    src: $src;
+  }
+}
+
+@include font-face('MontserratRegular', 'fonts/Montserrat-Regular', normal, normal, ttf);
+@include font-face('MontserratMedium', 'fonts/Montserrat-Medium', normal, normal, ttf);
+@include font-face('MontserratSemiBold', 'fonts/Montserrat-SemiBold', normal, normal, ttf);
+@include font-face('MontserratBold', 'fonts/Montserrat-Bold', normal, normal, ttf);
+
+* {
+	margin: 0;
+	padding: 0;
+	scroll-behavior: smooth;
+	font-family: MontserratMedium;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  width: 1200px;
+  height: 100%;
+}
+
+.button {
+  text-decoration: none;
+  padding: 20px;
+  background-color: #63CFD0;
+  border-radius: 5px;
+  color: white;
+  &:hover {
+    background-color: #1F75FF;
+  }
+}
+
+#scroll_top {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  bottom: 100px;
+  right: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  display: none;
+  svg {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+#promo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // background-color: #EDEEF0;
+  background-color: white;
+  min-height: 100vh;
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    width: 100%;
+    height: 200px;
+    .logo {
+      width: 100px;
+      height: 100px;
+      transition: transform 0.4s linear;
+      &:hover {
+        transform: rotate(20deg);
+      }
+    }
+    .navigation {
+      list-style-type: none;
+      display: flex;
+      flex-direction: row;
+      .nav_item {
+        margin: 0 20px;
+        a {
+          text-decoration: none;
+          color: black;
+          &:hover { color: #1F75FF; }
+        }
+        &:last-child { margin-right: 0; }
+      }
+    }
+  }
+  main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 80vh;
+    .left_section {
+      .title {
+        font-size: 52px;
+        line-height: 67px;
+        text-transform: uppercase;
+        font-family: MontserratBold;
+        white-space: pre-line;
+        margin-bottom: 48px;
+        color: #1F75FF;
+      }
+      .subtitle {
+        font-size: 36px;
+        line-height: 44px;
+        font-family: MontserratBold;
+        white-space: pre-line;
+        margin-bottom: 35px;
+        color: #63CFD0;
+      }
+      .description {
+        font-size: 17px;
+        line-height: 24px;
+        white-space: pre-line;
+      }
+    }
+  }
+}
+
+#intensives {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #F0F3F9;
+  box-shadow: inset 0px 0px 25px rgba(70, 79, 89, 0.1);
+  height: auto;
+  .title {
+    font-size: 48px;
+    line-height: 59px;
+    text-align: center;
+    margin-top: 50px;
+    font-family: MontserratBold;
+    color: #91A0B1;
+  }
+  .card_container {
+    width: 100%;
+    margin: 50px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    .card {
+      width: 340px;
+      background-color: #FFFFFF;
+      box-shadow: 2px 2px 9px rgba(50, 57, 87, 0.1);
+      margin: 30px 0;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .card_image {
+        width: 340px;
+        height: 200px;
+      }
+      .description_container {
+        width: 100%;
+        height: 140px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        .text {
+          text-align: center;
+          margin: 35px 0;
+          padding: 0 20px;
+          white-space: pre-line;
+        }
+      }
+    }
+  }
+}
+
+#about {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  .footer_shinesquad {
+    width: 100%;
+    .footer_shinesquad_prev {
+      margin-top: 163px;
+      font-weight: bold;
+      font-size: 25px;
+      line-height: 30px;
+      color: #63CFD0;
+      font-family: MontserratBold;
+    }
+    .footer_shinesquad_desc {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 49px;
+      .footer_shinesquad_description_name {
+        font-size: 55px;
+        line-height: 67px;
+        color: #1F75FF;
+        font-family: MontserratBold;
+      }
+      .footer_shinesquad_desc_description {
+        font-family: MontserratMedium;
+        font-size: 16px;
+        line-height: 20px;
+        color: #323E5F;
+        margin-bottom: 12px;
+        margin-top: 25px;
+        .one {
+          font-family: MontserratMedium;
+          font-size: 16px;
+          line-height: 20px;
+          color: #323E5F;
+          margin-bottom: 12px;
+          margin-top: 25px;
+        }
+        .two {
+          font-size: 24px;
+          line-height: 29px;
+          color: #323E5F;
+          font-family: MontserratBold;
+          margin-bottom: 12px;
+          text-decoration: none;
+        }
+        .three {
+          font-family: MontserratMedium;
+          font-size: 16px;
+          line-height: 20px;
+          color: #323E5F;
+          display: flex;
+          height: auto;
+          align-items: center;
+          img {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            user-select: none;
+          }
+        }
+      }
+    }
+  }
+  .cards {
+    margin-top: 75px;
+    margin-bottom: 141px;
+    display: flex;
+    justify-content: space-between;
+    .card {
+      width: 215px;
+      height: 350px;
+      padding: 30px;
+      position: relative;
+      a {
+        color: white;
+        background-color: #63CFD0;
+        border-radius: 3px;
+        padding: 10px;
+        font-size: 14px;
+        margin-top: 30px;
+        &:hover {
+          background-color: #1F75FF;
+        }
+      }
+      .avatar {
+        width: 160px;
+        height: 160px;
+        border-radius: 80px;
+        background-color: #E3E6EB;
+        margin-bottom: 20px;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 80px;
+        }
+      }
+      .fi {
+        font-family: MontserratBold;
+        font-size: 18px;
+        line-height: 22px;
+        color: #6E7884;
+        margin-bottom: 11px;
+      }
+      .card_desc {
+        font-family: MontserratMedium;
+        font-size: 14px;
+        line-height: 17px;
+        color: #6E7884;
+        margin-bottom: 11px;
+      }
+      .skills {
+        font-size: 14px;
+        line-height: 17px;
+        color: #6E7884;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+#footer {
+  height: 180px;
+  width: 100%;
+  background: linear-gradient(90deg, #1A76B5 10.26%, #1E1266 67.71%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .footer_alignment {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .madeby {
+      color: white;
+      font-family: MontserratMedium;
+      font-size: 15px;
+      line-height: 18px;
+    }
+    .menu {
+      list-style-type: none;
+      display: flex;
+      .nav_item {
+        margin: 20px;
+        font-size: 14px;
+        line-height: 17px;
+        cursor: pointer;
+        a {
+          color: white;
+          &:hover {
+            color: #01FBFD;
+          }
+        }
+      }
+    }
+  }
+}
