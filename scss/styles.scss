@@ -397,6 +397,9 @@ a {
           margin-left: 20px;
           margin-right: 20px;
         }
+        .subtitle {
+          font-size: 32px;
+        }
       }
     }
   }
@@ -417,12 +420,16 @@ a {
         .footer_shinesquad_description_name,
         .footer_shinesquad_desc_description {
           text-align: center;
+
           .three {
             justify-content: center;
           }
         }
       }
     }
+  }
+  .two {
+    font-size: 20px !important;
   }
 }
 

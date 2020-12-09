@@ -321,6 +321,8 @@ a {
       text-align: center;
       margin-left: 20px;
       margin-right: 20px; }
+    #promo main .left_section .subtitle {
+      font-size: 32px; }
   #intensives .card_container .card {
     margin: 30px 20px; }
   #about .footer_shinesquad .footer_shinesquad_prev {
@@ -332,7 +334,9 @@ a {
       text-align: center; }
       #about .footer_shinesquad .footer_shinesquad_desc .footer_shinesquad_description_name .three,
       #about .footer_shinesquad .footer_shinesquad_desc .footer_shinesquad_desc_description .three {
-        justify-content: center; } }
+        justify-content: center; }
+  .two {
+    font-size: 20px !important; } }
 
 @media (max-width: 979px) {
   #scroll_top {
