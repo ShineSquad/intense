@@ -69,6 +69,16 @@ a {
   }
 }
 
+.disable_button {
+  text-decoration: none;
+  padding: 20px;
+  background-color: #808080;
+  pointer-events: none;
+  border-radius: 5px;
+  color: #F1F1F1;
+  cursor: default;
+}
+
 #scroll_top {
   width: 40px;
   height: 40px;
