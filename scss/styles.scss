@@ -281,7 +281,7 @@ a {
     margin-top: 75px;
     margin-bottom: 141px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
     margin-left: 20px;
     margin-right: 20px;
@@ -333,6 +333,12 @@ a {
         color: #6E7884;
         margin-bottom: 30px;
       }
+    }
+    .card:first-child {
+      padding-left: 0;
+    }
+    .card:last-child {
+      padding-right: 0;
     }
   }
 }
@@ -414,6 +420,15 @@ a {
     }
   }
   #about {
+    .cards {
+      justify-content: space-around;
+      .card:first-child {
+      padding-left: 30px;
+      }
+      .card:last-child {
+        padding-right: 30px;
+      }
+    }
     .footer_shinesquad {
       .footer_shinesquad_prev {
         text-align: center;
